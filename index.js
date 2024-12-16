@@ -7,7 +7,13 @@ const EmployeeRoutes = require('./Routes/EmployeeRoutes');
 const PORT = process.env.PORT || 8080;
 
 require('./Models/db');
-app.use(cors());
+const corsOptions = {
+  origin: 'https://emsfrontend-sandy.vercel.app', // Frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // HTTP methods
+  credentials: true, // Include cookies if needed
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.use('/api/employees', EmployeeRoutes);
